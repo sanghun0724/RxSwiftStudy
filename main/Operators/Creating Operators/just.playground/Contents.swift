@@ -29,12 +29,12 @@ import RxSwift
 
 let disposeBag = DisposeBag()
 let element = "😀"
-
-Observable.just(element)
+//just는 from과는 다르게 파라메터로 전달받은 인자를 '그대로' 하나 방출 
+Observable.just(element) //element를 방출하는 옵저버블 
    .subscribe { event in print(event) }
    .disposed(by: disposeBag)
 
-Observable.just([1, 2, 3])
+Observable.just([1, 2, 3]) //배열을 방출하는 옵저버블
    .subscribe { event in print(event) }
    .disposed(by: disposeBag)
 

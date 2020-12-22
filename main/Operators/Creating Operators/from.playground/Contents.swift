@@ -29,7 +29,7 @@ import RxSwift
 
 let disposeBag = DisposeBag()
 let fruits = ["🍏", "🍎", "🍋", "🍓", "🍇"]
-
+//순서대로 하나씩 방출 from  (squence)
 Observable.from(fruits)
    .subscribe { element in print(element) }
    .disposed(by: disposeBag)

@@ -26,7 +26,19 @@ import RxSwift
 /*:
  # Observables
  */
+//#1 함수가아닌 연산자 ! ex) create
+Observable<Int>.create{ (observer) -> Disposable in
+   observer.on(.next(0)) // 0이저장되어있는 넥스트 이벤트 전달
+   observer.onNext(1) //.  1   '' '' '' '' ''
+   
+   observer.onCompleted() //종료
+   
+   return Disposables.create() //disposables 메모리정리에 필요한 객체
+}
 
+//#2
+//create 대신 from 활용
+Observable.from([0,1])
 
 
 

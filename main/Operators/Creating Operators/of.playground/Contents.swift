@@ -31,7 +31,7 @@ let disposeBag = DisposeBag()
 let apple = "🍏"
 let orange = "🍊"
 let kiwi = "🥝"
-
+ //여러개의 값을 '동시에' 전달 of
 Observable.of(apple, orange, kiwi)
    .subscribe { element in print(element) }
    .disposed(by: disposeBag)

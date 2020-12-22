@@ -29,5 +29,19 @@ import RxSwift
 
 let disposeBag = DisposeBag()
 
+let a = BehaviorSubject(value: 1)
+let b = BehaviorSubject(value: 2)
 
+let subject = PublishSubject<BehaviorSubject<Int>>()
 
+subject
+    .flatMap{ $0.asObservable() } //받아서 새로운거 생성! 이경우엔 섭젝트 받아서 옵저버블 방출
+    .subscribe{print($0)}
+    .disposed(by: disposeBag)
+
+subject.onNext(a)
+subject.onNext(b) //모든 옵저버블은 하나의 옵저버블로 최종적으로 모두 합쳐지고 (flatmap) 방출되는 항목들이 순차적으로 구독자에게 전달됩니다.
+
+a.onNext(11)
+b.onNext(22)
+ // 새로운 옵저버블은 항목이 업데이트 될때마다 새로운 하나 옵저버블을 갱신 > 구독자 전달
