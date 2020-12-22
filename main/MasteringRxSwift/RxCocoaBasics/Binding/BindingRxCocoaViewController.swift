@@ -38,7 +38,16 @@ class BindingRxCocoaViewController: UIViewController {
       valueLabel.text = ""
       valueField.becomeFirstResponder()
       
-      
+//    valueField.rx.text
+//        .observeOn(MainScheduler.instance)
+//        .subscribe(onNext: {[weak self] str in
+//            self?.valueLabel.text = str
+//        })
+//        .disposed(by: disposeBag)
+    
+    valueField.rx.text
+        .bind(to: valueLabel.rx.text) //옵저버블을 옵저버블에게 이벤트전달
+        .disposed(by: disposeBag) //UI라도 위처럼 메인쓰레드 지정안해도댐 자동으로 해줌 ! 
       
    }
    
